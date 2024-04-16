@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Street.Lightning.Domain\Street.Lightning.Domain.csproj" />
+      <ProjectReference Include="..\Street.Lightning.DTO\Street.Lightning.DTO.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="AutoMapper" Version="13.0.1" />
+      <PackageReference Include="FluentValidation" Version="11.9.0" />
+      <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
+      <PackageReference Include="MediatR" Version="12.2.0" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Contracts\Persistence\Features\CityIlluminationDetails\Commands\" />
+      <Folder Include="Contracts\Persistence\Features\CityIlluminationDetails\Queries\" />
+      <Folder Include="Contracts\Persistence\Features\City\Queries\GetCityWithIlluminationDetails\" />
+      <Folder Include="Contracts\Persistence\Features\Country\Commands\" />
+      <Folder Include="Contracts\Persistence\Features\Country\Queries\" />
+      <Folder Include="Contracts\Persistence\Features\Illumination\Commands\" />
+      <Folder Include="Contracts\Persistence\Features\Illumination\Queries\" />
+      <Folder Include="Exceptions\" />
+    </ItemGroup>
+
+</Project>

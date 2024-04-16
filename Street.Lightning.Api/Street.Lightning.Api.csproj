@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Street.Lightning.Application\Street.Lightning.Application.csproj" />
+    <ProjectReference Include="..\Street.Lightning.Infrastructure\Street.Lightning.Infrastructure.csproj" />
+    <ProjectReference Include="..\Street.Lightning.Persistence\Street.Lightning.Persistence.csproj" />
+  </ItemGroup>
+
+</Project>

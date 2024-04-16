@@ -1,0 +1,51 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\konra\\Desktop\\Repositories\\StreetLightning\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\konra\\Desktop\\Repositories\\StreetLightning\\StreetLightning\\WeatherForecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:StreetLightning\\WeatherForecast.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\konra\\Desktop\\Repositories\\StreetLightning\\StreetLightning\\StreetLightning.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:StreetLightning\\StreetLightning.http||{5703B403-55E7-4C63-8C88-A8F52C7A45C5}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 363,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "WeatherForecast.cs",
+              "DocumentMoniker": "C:\\Users\\konra\\Desktop\\Repositories\\StreetLightning\\StreetLightning\\WeatherForecast.cs",
+              "RelativeDocumentMoniker": "StreetLightning\\WeatherForecast.cs",
+              "ToolTip": "C:\\Users\\konra\\Desktop\\Repositories\\StreetLightning\\StreetLightning\\WeatherForecast.cs",
+              "RelativeToolTip": "StreetLightning\\WeatherForecast.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-15T12:01:10.132Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StreetLightning.http",
+              "DocumentMoniker": "C:\\Users\\konra\\Desktop\\Repositories\\StreetLightning\\StreetLightning\\StreetLightning.http",
+              "RelativeDocumentMoniker": "StreetLightning\\StreetLightning.http",
+              "ToolTip": "C:\\Users\\konra\\Desktop\\Repositories\\StreetLightning\\StreetLightning\\StreetLightning.http",
+              "RelativeToolTip": "StreetLightning\\StreetLightning.http",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003502|",
+              "WhenOpened": "2024-04-15T12:01:08.659Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
