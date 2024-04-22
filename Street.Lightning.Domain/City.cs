@@ -4,7 +4,7 @@ using Street.Lightning.Domain.Common;
 
 namespace Street.Lightning.Domain;
 
-public class City : BaseEntity
+public class City : BaseEntityOneKey
 {
     [ForeignKey("CountryId")]
     public int CountryId { get; set; }
@@ -13,4 +13,6 @@ public class City : BaseEntity
     public string CityName { get; set; } = string.Empty;
     public double Latitude { get; set; }
     public double Longitude { get; set; }
+    
+    public virtual IEnumerable<CityIlluminationDetails> CityIlluminationDetails { get; set; }
 }

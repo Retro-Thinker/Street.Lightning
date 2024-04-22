@@ -8,17 +8,18 @@ public class CityConfiguration : IEntityTypeConfiguration<City>
 {
     public void Configure(EntityTypeBuilder<City> builder)
     {
-        builder.Property(prop => prop.Id)
-               .IsRequired()
-               .HasMaxLength(50);
-        
+        builder.Property(prop => prop.CityName)
+            .IsRequired()
+            .HasMaxLength(50);
+
         var initCityData = new City
         {
             Id = 1,
             CountryId = 1,
             CityName = "Wrocław",
             Latitude = 51.107883,
-            Longitude = 17.038538
+            Longitude = 17.038538,
+            DateCreated = DateTime.UtcNow
         };
 
         builder.HasData(initCityData);

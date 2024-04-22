@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Street.Lightning.Persistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+46f0a5338f6e52732043cdba260c2bfa8fb54153")]
 [assembly: System.Reflection.AssemblyProductAttribute("Street.Lightning.Persistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Street.Lightning.Persistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

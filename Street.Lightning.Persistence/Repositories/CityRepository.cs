@@ -31,7 +31,7 @@ public class CityRepository : GenericRepository<City>, ICityRepository
             .Where(entity => entity.CityId == cityId)
             .Include(entity => entity.City)
                 .ThenInclude(cityEntity => cityEntity.Country)
-            .Include(entity => entity.IlluminationDetails)
+            .Include(entity => entity.Illumination)
             .ToListAsync();
 
         return cityWithIlluminationDetails;
