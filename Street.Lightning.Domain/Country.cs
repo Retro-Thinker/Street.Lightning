@@ -2,7 +2,7 @@
 
 namespace Street.Lightning.Domain;
 
-public class Country : BaseEntity
+public class Country : BaseEntityOneKey
 {
     public string CountryName { get; set; } = string.Empty;
     public IEnumerable<City> Cities { get; set; }
