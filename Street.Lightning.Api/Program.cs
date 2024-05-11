@@ -5,6 +5,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
+builder.Configuration.AddAzureAppConfiguration(
+    "Endpoint=https://app-street-lights-config.azconfig.io;Id=fQi9;Secret=cjpRyZR5Te32j9FXWdp8RikpR45qIT/gIPyeyXgQjBg=");
 builder.Services.AddApplicationServices();
 builder.Services.AddPersistenceServices(builder.Configuration);
 
@@ -22,12 +24,12 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+// Uncomment this if debugging locally Configure the HTTP request pipeline.
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 app.UseHttpsRedirection();
 

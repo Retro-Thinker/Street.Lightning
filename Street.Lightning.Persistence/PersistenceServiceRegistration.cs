@@ -15,9 +15,13 @@ public static class PersistenceServiceRegistration
     {
         services.AddDbContext<StreetLightningDatabaseContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("StreetLightningConnectionString"));
+            options.UseSqlServer(configuration.GetValue<string>("Azure-Sql-Connection-String"));
         });
 
+        var serviceProvider = services.BuildServiceProvider();
+        var dbContext = serviceProvider.GetRequiredService<StreetLightningDatabaseContext>();
+        dbContext.Database.Migrate();
+        
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         services.AddScoped<ICountryRepository, CountryRepository>();
         services.AddScoped<ICityRepository, CityRepository>();
