@@ -1,4 +1,75 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+@import "variables";
+
+html, body { height: 100%; background-color: #FCFFEC;}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.sm-p-x {
+   padding-left: $mdPad;
+   padding-right: $smPad;
+}
+
+.sm-m-x {
+   margin: 0 $smPad;
+}
+.sm-m-y {
+   margin: $smPad 0;
+}
+
+.sm-m {
+   margin: $smPad $smPad;
+}
+
+.md-m-x {
+   margin: 0px $mdPad;
+}
+
+.md-m-y {
+   margin: $mdPad 0px;
+}
+
+.md-p-x {
+   margin: 0px $mdPad;
+}
+
+.md-p-r {
+   margin-right: $mdPad;
+}
+
+.huge-m-b {
+   margin-bottom: 60px;
+}
+
+.flex-center {
+   display: flex;
+   align-items: center;
+   justify-items: center;
+}
+
+.flex {
+   flex: 1 1 auto;
+}
+
+.flex-col {
+   flex-direction: column;
+}
+
+nav a {
+   text-decoration: none;
+   color: white;
+}
+
+.spacer {
+   flex: 1 1 auto;
+}
+
+.container {
+   padding: $smPad 5%;
+   height: calc(100% - $toolbarSize - 2*$smPad);
+}
+
+.title {
+   font-size: 40px;
+   font-weight: bold;
+}
