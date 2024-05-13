@@ -13,7 +13,17 @@ export class CitiesManagerService {
    constructor(private http: HttpClient) { }
    
    getCities() {
-      return this.http.get<ResponseDto<CityDto[]>>(this.urlBase + "/City/cities")
+
+      const httpOptions = {
+         headers: new HttpHeaders({
+           'Content-Type': 'application/json',
+           'Access-Control-Allow-Origin':'*',
+           'Authorization':'authkey',
+           'userid':'1'
+         })
+       };
+
+      return this.http.get<ResponseDto<CityDto[]>>(this.urlBase + "/City/cities", httpOptions)
          .pipe(
             map((v, i) => v.data),
             catchError((err, obj) => of([] as CityDto[]))
