@@ -1,0 +1,20 @@
+<nav>
+   <mat-toolbar class="mat-toolbar-transparent"> <!--TODO theme-->
+      <a class="md-m-x flex-center nav-link-main" routerLink="/" >
+         <img src="../assets/Bulb.png" width="45" height="45" alt="Bulb" class="md-p-r md-m-x"/>
+         <span>Street lights</span>
+      </a>
+      <span class="md-m-x"></span>
+      <a class="md-m-x nav-link" routerLink="/cities">Available cities</a>
+      <a class="md-m-x nav-link" routerLink="/credits">Credits</a>
+   </mat-toolbar>
+</nav>
+<div class="container">
+   <router-outlet></router-outlet>
+</div>
+<footer>
+   <div>
+      <hr/>
+      &copy; Street lights 2024
+   </div>
+</footer>

@@ -1,0 +1,26 @@
+<div class="title md-m-y">Cities</div>
+<table mat-table [dataSource]="this.cityDataSource" class="mat-elevation-z8 table">
+
+   <ng-container matColumnDef="cityName">
+      <th mat-header-cell *matHeaderCellDef> City name </th>
+      <td mat-cell *matCellDef="let element"> {{element.cityName}} </td>
+   </ng-container>
+
+   <ng-container matColumnDef="latitude">
+      <th mat-header-cell *matHeaderCellDef> Latitude </th>
+      <td mat-cell *matCellDef="let element"> {{element.latitude}} </td>
+   </ng-container>
+
+   <ng-container matColumnDef="longitude">
+      <th mat-header-cell *matHeaderCellDef> Longtitude </th>
+      <td mat-cell *matCellDef="let element"> {{element.longitude}} </td>
+   </ng-container>
+
+   <ng-container matColumnDef="countryName">
+      <th mat-header-cell *matHeaderCellDef> Country name </th>
+      <td mat-cell *matCellDef="let element"> {{element.countryName}} </td>
+   </ng-container>
+
+   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

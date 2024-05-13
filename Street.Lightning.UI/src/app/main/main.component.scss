@@ -1,0 +1,16 @@
+@import "../../variables";
+
+img {
+   width: 100%;
+   object-fit: cover;
+   border-radius: 5px;
+}
+
+.img-container {
+   width: 60%;
+   padding-left: $mdPad;
+}
+
+.text-container {
+   width: 40%;
+}

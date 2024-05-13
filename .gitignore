@@ -480,3 +480,5 @@ Street.Lightning.Persistence/obj/Debug/net8.0/Street.Lightning.Persistence.Gener
 Street.Lightning.Persistence/obj/Debug/net8.0/Street.Lightning.Persistence.pdb
 Street.Lightning.Persistence/obj/Debug/net8.0/ref/Street.Lightning.Persistence.dll
 Street.Lightning.Persistence/obj/Debug/net8.0/refint/Street.Lightning.Persistence.dll
+
+obj/*
