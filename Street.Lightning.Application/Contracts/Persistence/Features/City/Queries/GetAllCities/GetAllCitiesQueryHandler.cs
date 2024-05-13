@@ -22,7 +22,7 @@ public class GetAllCitiesQueryHandler : IRequestHandler<GetAllCitiesQuery,
         var cities = await _cityRepository.GetAllAsync();
         var returnData = new ResponseResult<IEnumerable<CityDto>>
         {
-            Data = _mapper.Map<List<CityDto>>(cities),
+            Data = _mapper.Map<IEnumerable<CityDto>>(cities),
             Message = null,
             OperationStatus = ResultEnums.Success
         };

@@ -18,7 +18,7 @@ public class GetCityByIdQueryHandler : IRequestHandler<GetCityByIdQuery, Respons
     
     public async Task<ResponseResult<CityDto>> Handle(GetCityByIdQuery request, CancellationToken cancellationToken)
     {
-        var city = await _cityRepository.GetByIdAsync(request.Id);
+        var city = await _cityRepository.GetByIdAsync(request.Id, "Country");
         var dataResult = new ResponseResult<CityDto>
         {
             Data = _mapper.Map<CityDto>(city),
