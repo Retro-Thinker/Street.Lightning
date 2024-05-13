@@ -8,5 +8,5 @@ export const routes: Routes = [
    { path: 'add-city', component: AddCityComponent },
    { path: 'credits', component: CreditsComponent },
    { path: 'cities', component: CitiesListComponent },
-   { path: '**', component: MainComponent },
+   { path: '**', component: MainComponent }
 ];
