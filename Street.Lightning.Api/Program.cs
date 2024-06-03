@@ -39,6 +39,15 @@ var app = builder.Build();
 
 app.UseRouting();
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGet("/", context => {
+        context.Response.Redirect("swagger");
+        return Task.CompletedTask;
+    });
+});
+
 app.UseHttpsRedirection();
 
 app.MapControllers();
