@@ -33,18 +33,20 @@ public class CitySunRepository : ICitySunRepository
         var longitude = cityIllumination.City.Longitude.ToString();
         
         var apiUri = ConstructUriAddress(latitude, longitude);
-        var sunLightDataResponse = await FetchSunlightData(apiUri);
+        var sunLightDataResponse = await FetchSunlightData<SunriseSunsetResponseDto>(apiUri);
 
         return sunLightDataResponse;
     }
 
-    public Task<ResponseResult<IEnumerable<SunriseSunsetResponseDto>>> FetchCityYearlySunLightDetails(City city)
+    public async Task<ResponseResult<IEnumerable<SunriseSunsetResponseDto>>> FetchCityYearlySunLightDetails(City city)
     {
         //https://api.sunrisesunset.io/json?lat=38.907192&lng=-77.036873&date_start=1990-05-01&date_end=1990-07-01
         var uri = ConstructUriAddress(city.Latitude.ToString(), city.Longitude.ToString(),
             new DateTime(DateTime.UtcNow.Year, 1, 1), new DateTime(DateTime.UtcNow.Year, 12, 21));
-        
-        
+
+        var sunLightDataResponse = await FetchSunlightData<IEnumerable<SunriseSunsetResponseDto>>(uri);
+
+        return sunLightDataResponse;
     }
 
     private Uri ConstructUriAddress(string latitude, string longitude, DateTime? startingDate = null, DateTime? endingDate = null)
@@ -75,50 +77,35 @@ public class CitySunRepository : ICitySunRepository
         return uri;
     }
     
-    private async Task<ResponseResult<SunriseSunsetResponseDto>> FetchSunlightData(Uri uri, bool isComplex = false)
+    private async Task<ResponseResult<T>> FetchSunlightData<T>(Uri uri, bool isComplex = false)
     {
         var response = await _client.GetStringAsync(uri);
 
         if (response == "")
         {
-            return new ResponseResult<SunriseSunsetResponseDto>
+            return new ResponseResult<T>
             {
-                Data = null,
+                Data = default,
                 Message = "Api error call",
                 OperationStatus = ResultEnums.InternalError
             };
         }
 
         JObject jsonResponse = JObject.Parse(response);
+        var sunriseSunsetDetails = ParseSunsetApiResponse<T>(jsonResponse["results"]);
 
-        if (isComplex)
-        {
-            var sunriseSunsetDetails =
-                ParseSunsetApiResponse<IEnumerable<SunriseSunsetResponseDto>>(jsonResponse["results"]);
-
-        }
-        else
-        {
-            var sunriseSunsetDetails = 
-                _mapper.Map<SunriseSunsetResponseDto>(jsonResponse["results"]);
-        }
-
-        
-        var sunlightQueryResult = new ResponseResult<SunriseSunsetResponseDto>
+        return new ResponseResult<T>
         {
             Data = sunriseSunsetDetails,
-            OperationStatus = ResultEnums.Success,
-            Message = string.Empty
+            OperationStatus = ResultEnums.Success
         };
-
-        return sunlightQueryResult;
     }
 
     private T ParseSunsetApiResponse<T>(JToken jResponse)
     {
         return _mapper.Map<T>(jResponse);
     }
-    
+
     public double CalculateLightsPowerInCity(IEnumerable<CityIlluminationDetails> cityLights)
     {
         // Calculating the SUM_1-n(Bulb_n * QuantityOfBulbs_n)

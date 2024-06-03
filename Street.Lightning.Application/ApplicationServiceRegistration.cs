@@ -11,7 +11,6 @@ public static class ApplicationServiceRegistration
         services.AddMediatR(cfg => 
                             cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly())
                             );
-
         return services;
     }
 }
