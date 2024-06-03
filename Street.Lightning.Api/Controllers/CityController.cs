@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -60,4 +61,9 @@ public class CityController : ControllerBase
         return powerUsageQueryResult;
     }
 
+    [HttpGet("getCityMonthlyPowerUsage{cityId}")]
+    public async Task<ResponseResult<YearlyPowerUsageDto>> GetDetailedYearlyPowerUsage(int cityId)
+    {
+        throw new NotImplementedException();
+    }
 }
