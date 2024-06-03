@@ -20,13 +20,14 @@ public static class PersistenceServiceRegistration
 
         var serviceProvider = services.BuildServiceProvider();
         var dbContext = serviceProvider.GetRequiredService<StreetLightningDatabaseContext>();
-        dbContext.Database.Migrate();
+        //dbContext.Database.Migrate();
         
         services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
         services.AddScoped<ICountryRepository, CountryRepository>();
         services.AddScoped<ICityRepository, CityRepository>();
         services.AddScoped<IIlluminationRepository, IlluminationRepository>();
         services.AddScoped<ICityIlluminationDetailsRepository, CityIlluminationDetailsRepository>();
+        services.AddScoped<ICitySunRepository, CitySunRepository>();
         
         return services;
     }

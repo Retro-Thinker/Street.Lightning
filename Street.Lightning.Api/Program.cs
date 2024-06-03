@@ -1,3 +1,4 @@
+using Microsoft.OpenApi.Models;
 using Street.Lightning.Application;
 using Street.Lightning.Persistence;
 
@@ -20,9 +21,14 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(configuration =>
+{
+    configuration.SwaggerDoc("v1", new OpenApiInfo { Title = "Street Lights API", Version = "v1"});
+});
 
 var app = builder.Build();
+
+
 
 // Uncomment this if debugging locally Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
@@ -31,9 +37,18 @@ var app = builder.Build();
     app.UseSwaggerUI();
 //}
 
-app.UseHttpsRedirection();
-
+app.UseRouting();
 app.UseAuthorization();
+
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapGet("/", context => {
+        context.Response.Redirect("swagger");
+        return Task.CompletedTask;
+    });
+});
+
+app.UseHttpsRedirection();
 
 app.MapControllers();
 
