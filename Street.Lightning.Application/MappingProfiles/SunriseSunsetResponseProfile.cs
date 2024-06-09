@@ -9,6 +9,7 @@ public class SunriseSunsetResponseProfile : Profile
 {
     public SunriseSunsetResponseProfile()
     {
+        
         CreateMap<JObject, SunriseSunsetResponseDto>()
             .ForMember(dest => dest.SunriseTime,
                 opt =>
@@ -29,6 +30,8 @@ public class SunriseSunsetResponseProfile : Profile
             .ForMember(dest => dest.StreetLightsOnDuration,
                 opt =>
                     opt.MapFrom(src => CountHoursDifference(src["sunrise"].ToString(), src["sunset"].ToString())));
+        
+        CreateMap<List<JToken>, IEnumerable<SunriseSunsetResponseDto>>();
     }
 
     private double CountHoursDifference(string sunrise, string sunset)
@@ -36,6 +39,11 @@ public class SunriseSunsetResponseProfile : Profile
         var sunriseStamp = DateTime.ParseExact(sunrise, "h:mm:ss tt", CultureInfo.InvariantCulture).TimeOfDay;
         var sunsetStamp = DateTime.ParseExact(sunset, "h:mm:ss tt", CultureInfo.InvariantCulture).TimeOfDay;
 
-        return (sunsetStamp - sunriseStamp).TotalHours;
+        if (sunsetStamp < sunriseStamp)
+        { 
+            return (sunriseStamp - sunsetStamp).TotalHours;
+        }
+
+        return (new TimeSpan(24, 0, 0) - sunsetStamp + sunriseStamp).TotalHours;
     }
 }
