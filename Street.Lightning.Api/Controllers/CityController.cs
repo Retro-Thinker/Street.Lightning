@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Street.Lightning.Application.Contracts.Persistence.Features.City.Queries.GetAllCities;
 using Street.Lightning.Application.Contracts.Persistence.Features.City.Queries.GetCity;
 using Street.Lightning.Application.Contracts.Persistence.Features.City.Queries.GetCityDailyUsage;
+using Street.Lightning.Application.Contracts.Persistence.Features.City.Queries.GetCityYearlyUsage;
 using Street.Lightning.DTO.Features.City;
 using Street.Lightning.DTO.Features.Common.City;
 using Street.Lightning.DTO.Features.ResponseResult;
@@ -61,9 +62,16 @@ public class CityController : ControllerBase
         return powerUsageQueryResult;
     }
 
-    [HttpGet("getCityMonthlyPowerUsage{cityId}")]
+    [HttpGet("getCityYearlyPowerUsage/{cityId}")]
     public async Task<ResponseResult<YearlyPowerUsageDto>> GetDetailedYearlyPowerUsage(int cityId)
     {
-        throw new NotImplementedException();
+        var powerUsageQueryResult = await _mediator.Send(new GetYearlyCityUsageQuery(cityId));
+
+        if (powerUsageQueryResult.OperationStatus != ResultEnums.Success)
+        {
+            return null;
+        }
+
+        return powerUsageQueryResult;
     }
 }

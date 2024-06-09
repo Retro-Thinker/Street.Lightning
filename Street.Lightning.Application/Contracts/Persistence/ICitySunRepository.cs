@@ -8,6 +8,6 @@ public interface ICitySunRepository
 { 
     Task<ResponseResult<SunriseSunsetResponseDto>> FetchCitySunLightDetails(IEnumerable<CityIlluminationDetails> cityLights);
 
-    Task<ResponseResult<IEnumerable<SunriseSunsetResponseDto>>> FetchCityYearlySunLightDetails(City city);
+    Task<ResponseResult<IEnumerable<SunriseSunsetResponseDto>>> FetchCityYearlySunLightDetails(int cityId, DateTime? startingDate = null, DateTime? endingDate = null);
     double CalculateLightsPowerInCity(IEnumerable<CityIlluminationDetails> cityLights);
 }

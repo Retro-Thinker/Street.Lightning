@@ -4,5 +4,5 @@ namespace Street.Lightning.DTO.Features.City;
 
 public class YearlyPowerUsageDto
 {
-    public IDictionary<DateTime, long> MonthlyPowerUsage { get; set; }
+    public IDictionary<int, double> MonthlyPowerUsage { get; set; }
 }

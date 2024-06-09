@@ -1,6 +1,7 @@
 using System.Web;
 using AutoMapper;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Street.Lightning.Application.Contracts.Persistence;
 using Street.Lightning.Domain;
@@ -13,12 +14,14 @@ public class CitySunRepository : ICitySunRepository
 {
     private readonly IMapper _mapper;
     private readonly IConfiguration _configuration;
+    private readonly ICityRepository _cityRepository;
     private readonly HttpClient _client = new();
 
-    public CitySunRepository(IMapper mapper, IConfiguration configuration)
+    public CitySunRepository(IMapper mapper, IConfiguration configuration, ICityRepository cityRepository)
     {
         _mapper = mapper;
         _configuration = configuration;
+        _cityRepository = cityRepository;
     }
     
     public async Task<ResponseResult<SunriseSunsetResponseDto>> FetchCitySunLightDetails(IEnumerable<CityIlluminationDetails> cityLights)
@@ -38,13 +41,13 @@ public class CitySunRepository : ICitySunRepository
         return sunLightDataResponse;
     }
 
-    public async Task<ResponseResult<IEnumerable<SunriseSunsetResponseDto>>> FetchCityYearlySunLightDetails(City city)
+    public async Task<ResponseResult<IEnumerable<SunriseSunsetResponseDto>>> FetchCityYearlySunLightDetails(int cityId, DateTime? startingDate = null, DateTime? endingDate = null)
     {
-        //https://api.sunrisesunset.io/json?lat=38.907192&lng=-77.036873&date_start=1990-05-01&date_end=1990-07-01
+        var city = await _cityRepository.GetCityWithDetails(cityId);
         var uri = ConstructUriAddress(city.Latitude.ToString(), city.Longitude.ToString(),
             new DateTime(DateTime.UtcNow.Year, 1, 1), new DateTime(DateTime.UtcNow.Year, 12, 21));
 
-        var sunLightDataResponse = await FetchSunlightData<IEnumerable<SunriseSunsetResponseDto>>(uri);
+        var sunLightDataResponse = await FetchSunlightData<IEnumerable<SunriseSunsetResponseDto>>(uri, true);
 
         return sunLightDataResponse;
     }
@@ -92,7 +95,7 @@ public class CitySunRepository : ICitySunRepository
         }
 
         JObject jsonResponse = JObject.Parse(response);
-        var sunriseSunsetDetails = ParseSunsetApiResponse<T>(jsonResponse["results"]);
+        var sunriseSunsetDetails = ParseSunsetApiResponse<T>(jsonResponse["results"], isComplex);
 
         return new ResponseResult<T>
         {
@@ -101,8 +104,12 @@ public class CitySunRepository : ICitySunRepository
         };
     }
 
-    private T ParseSunsetApiResponse<T>(JToken jResponse)
+    private T ParseSunsetApiResponse<T>(JToken jResponse, bool isComplex = false)
     {
+        if (isComplex)
+        {
+            return _mapper.Map<T>(jResponse.Children<JObject>().ToList());
+        }
         return _mapper.Map<T>(jResponse);
     }
 
