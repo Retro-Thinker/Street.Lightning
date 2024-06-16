@@ -6,6 +6,7 @@ using Street.Lightning.Application.Contracts.Persistence.Features.City.Queries.G
 using Street.Lightning.Application.Contracts.Persistence.Features.City.Queries.GetCity;
 using Street.Lightning.Application.Contracts.Persistence.Features.City.Queries.GetCityDailyUsage;
 using Street.Lightning.Application.Contracts.Persistence.Features.City.Queries.GetCityYearlyUsage;
+using Street.Lightning.Application.Contracts.Persistence.Features.City.Queries.GetCityYearlyUsageInDays;
 using Street.Lightning.DTO.Features.City;
 using Street.Lightning.DTO.Features.Common.City;
 using Street.Lightning.DTO.Features.ResponseResult;
@@ -66,6 +67,19 @@ public class CityController : ControllerBase
     public async Task<ResponseResult<YearlyPowerUsageDto>> GetDetailedYearlyPowerUsage(int cityId)
     {
         var powerUsageQueryResult = await _mediator.Send(new GetYearlyCityUsageQuery(cityId));
+
+        if (powerUsageQueryResult.OperationStatus != ResultEnums.Success)
+        {
+            return null;
+        }
+
+        return powerUsageQueryResult;
+    }
+
+    [HttpGet("getYearlyCityPowerUsageDays/{cityId}")]
+    public async Task<ResponseResult<IEnumerable<DailyPowerUsageDto>>> GetYearlyPowerUsageByDays(int cityId)
+    {
+        var powerUsageQueryResult = await _mediator.Send(new GetYearlyUsageInDaysQuery(cityId));
 
         if (powerUsageQueryResult.OperationStatus != ResultEnums.Success)
         {

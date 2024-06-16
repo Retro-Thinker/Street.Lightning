@@ -1,6 +1,7 @@
 using System.Globalization;
 using AutoMapper;
 using Newtonsoft.Json.Linq;
+using Street.Lightning.DTO.Features.City;
 using Street.Lightning.DTO.Features.Common.SunriseSunsetAPI;
 
 namespace Street.Lightning.Application.MappingProfiles;
@@ -32,6 +33,8 @@ public class SunriseSunsetResponseProfile : Profile
                     opt.MapFrom(src => CountHoursDifference(src["sunrise"].ToString(), src["sunset"].ToString())));
         
         CreateMap<List<JToken>, IEnumerable<SunriseSunsetResponseDto>>();
+
+        CreateMap<SunriseSunsetResponseDto, DailyPowerUsageDto>();
     }
 
     private double CountHoursDifference(string sunrise, string sunset)
