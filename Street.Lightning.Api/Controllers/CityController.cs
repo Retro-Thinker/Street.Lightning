@@ -2,6 +2,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Net;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using Street.Lightning.Application.Contracts.Persistence.Features.City.Commands.CreateCity;
 using Street.Lightning.Application.Contracts.Persistence.Features.City.Queries.GetAllCities;
 using Street.Lightning.Application.Contracts.Persistence.Features.City.Queries.GetCity;
 using Street.Lightning.Application.Contracts.Persistence.Features.City.Queries.GetCityDailyUsage;
@@ -87,5 +88,26 @@ public class CityController : ControllerBase
         }
 
         return powerUsageQueryResult;
+    }
+
+    [HttpPost("addCity")]
+    public async Task<ResponseResult<Unit>> CreateCity(CityDto newCity)
+    {
+        var request = new CreateCityCommand
+        {
+            CityName = newCity.CityName,
+            Latitude = newCity.Latitude,
+            Longitude = newCity.Longitude,
+            CountryId = newCity.CountryId
+        };
+
+        var response = await _mediator.Send(request);
+
+        if (response.OperationStatus != ResultEnums.Success)
+        {
+            return null;
+        }
+
+        return response;
     }
 }

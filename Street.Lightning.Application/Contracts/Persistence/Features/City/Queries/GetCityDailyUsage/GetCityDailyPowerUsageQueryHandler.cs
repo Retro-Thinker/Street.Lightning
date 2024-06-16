@@ -43,7 +43,9 @@ public class GetCityDailyPowerUsageQueryHandler : IRequestHandler<GetCityDailyPo
             Message = string.Empty,
             Data = new DailyPowerUsageDto
             {
-                PowerUsage = calculatedDailyPower
+                PowerUsage = calculatedDailyPower,
+                TrackingDate = DateTime.UtcNow,
+                StreetLightsOnDuration = cityLightsConsumption.Data.StreetLightsOnDuration
             }
         };
         

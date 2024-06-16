@@ -21,13 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Contracts\Persistence\Features\CityIlluminationDetails\Commands\" />
-      <Folder Include="Contracts\Persistence\Features\CityIlluminationDetails\Queries\" />
       <Folder Include="Contracts\Persistence\Features\City\Queries\GetCityWithIlluminationDetails\" />
-      <Folder Include="Contracts\Persistence\Features\Country\Commands\" />
-      <Folder Include="Contracts\Persistence\Features\Country\Queries\" />
-      <Folder Include="Contracts\Persistence\Features\Illumination\Commands\" />
-      <Folder Include="Contracts\Persistence\Features\Illumination\Queries\" />
       <Folder Include="Exceptions\" />
     </ItemGroup>
 

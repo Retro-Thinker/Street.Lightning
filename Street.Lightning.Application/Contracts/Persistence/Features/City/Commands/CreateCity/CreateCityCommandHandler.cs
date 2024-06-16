@@ -40,7 +40,8 @@ public class CreateCityCommandHandler : IRequestHandler<CreateCityCommand, Respo
         {
             CityName = request.CityName,
             Latitude = request.Latitude,
-            Longitude = request.Longitude
+            Longitude = request.Longitude,
+            CountryId = request.CountryId
         };
 
         var response = await _cityRepository.CreateAsync(newCity);
