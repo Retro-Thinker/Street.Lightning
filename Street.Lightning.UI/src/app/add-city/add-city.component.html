@@ -1,15 +1,61 @@
-<p>Add-city works!</p>
-
-<div class="flex">
-   <mat-card class="center">
-      <mat-card-header>
-        <mat-card-title>Add city</mat-card-title>
-      </mat-card-header>
-      <mat-card-content>
-         <mat-form-field appearance="fill">
-            <mat-label></mat-label>
+<div class="title md-m-y">Add city</div>
+<div>
+   <form [formGroup]="form" class="center" (ngSubmit)="onSubmit(form.value)">
+      <div>
+         <mat-form-field>
+            <mat-label>City name</mat-label>
+            <input matInput formControlName="cityName" id="cityName"/>
          </mat-form-field>
-      </mat-card-content>
-    </mat-card>
-</div>
+      </div>
+      <div>
+         <mat-form-field>
+            <mat-label>Latitude</mat-label>
+            <input matInput formControlName="latitude" id="latitude"/>
+         </mat-form-field>
+      </div>
+      <div>
+         <mat-form-field>
+            <mat-label>Longitude</mat-label>
+            <input matInput formControlName="longitude" id="longitude"/>
+         </mat-form-field>
+      </div>
+      <div>
+         <mat-form-field>
+            <mat-label>Country</mat-label>
+            <mat-select formControlName="countryId" id="countryId">
+               <mat-option *ngFor="let country of countries$ | async" [value]="country.id">{{country.countryName}}</mat-option>
+            </mat-select>
+         </mat-form-field>
+      </div>
 
+      <div class="center">
+         <button mat-flat-button type="button" (click)="addDevice()">Add device</button>
+      </div>
+
+      <div formArrayName="illuminations">
+         <div *ngFor="let device of illuminations.controls; let i = index" [formGroupName]="i">
+            <div>Device {{i}}</div>
+            <div>
+               <mat-form-field>
+                  <mat-label>Device to use</mat-label>
+                  <mat-select formControlName="illuminationId" id="illuminationId">
+                     <mat-option *ngFor="let device of devices$ | async" [value]="device.id">{{device.name}}</mat-option>
+                  </mat-select>
+               </mat-form-field>
+            </div>
+            <div>
+               <mat-form-field>
+                  <mat-label>Quantity</mat-label>
+                  <input matInput formControlName="quantityOfBulbs"/>
+               </mat-form-field>
+            </div>
+         </div>
+      </div>
+
+      <div class="md-m-y">
+         <div class="center">
+            <button mat-flat-button type="submit">Submit</button>
+         </div>
+      </div>
+   </form>
+ </div>

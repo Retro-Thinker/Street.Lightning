@@ -2,7 +2,7 @@
 
 @import "variables";
 
-html, body { height: 100%; background-color: #FCFFEC;}
+html, body { height: 100%; background-color: $backgroundColor}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .sm-p-x {
@@ -41,6 +41,15 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
    margin-bottom: 60px;
 }
 
+.w-full {
+   width: 100%;
+}
+
+.center {
+   margin: auto;
+   width: fit-content;
+}
+
 .flex-center {
    display: flex;
    align-items: center;
@@ -65,11 +74,19 @@ nav a {
 }
 
 .container {
-   padding: $smPad 5%;
-   height: calc(100% - $toolbarSize - 2*$smPad);
+   padding: $smPad 5% $footerSize 5%;
+   min-height: calc(100% - $toolbarSize - 2*$smPad);
 }
 
 .title {
    font-size: 40px;
+   font-weight: bold;
+}
+
+.text-big {
+   font-size: 20px;
+}
+
+.text-bold {
    font-weight: bold;
 }
