@@ -1,0 +1,22 @@
+<div class="title md-m-y">Devices</div>
+<a mat-flat-button mat-link routerLink="/add-device">Add device</a>
+<table mat-table [dataSource]="this.devicesDataSource" class="mat-elevation-z8 table">
+
+   <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+   </ng-container>
+
+   <ng-container matColumnDef="illuminationProvider">
+      <th mat-header-cell *matHeaderCellDef> Electricity provider </th>
+      <td mat-cell *matCellDef="let element"> {{element.illuminationProvider}} </td>
+   </ng-container>
+
+   <ng-container matColumnDef="power">
+      <th mat-header-cell *matHeaderCellDef> Power </th>
+      <td mat-cell *matCellDef="let element"> {{element.power}} </td>
+   </ng-container>
+
+   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

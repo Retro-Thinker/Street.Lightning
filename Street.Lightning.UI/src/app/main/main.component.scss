@@ -1,16 +1,17 @@
 @import "../../variables";
 
-img {
-   width: 100%;
-   object-fit: cover;
-   border-radius: 5px;
+@media (min-width: 1500px)  {
+   img {
+      width: 1000px;
+      object-fit: cover;
+      border-radius: 5px;
+      float: right
+   }
 }
-
-.img-container {
-   width: 60%;
-   padding-left: $mdPad;
-}
-
-.text-container {
-   width: 40%;
+@media (max-width: 1500px) {
+   img {
+      width: 100%;
+      object-fit: fill;
+      border-radius: 5px;
+   }
 }

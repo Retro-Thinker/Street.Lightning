@@ -1,0 +1,16 @@
+<div class="title md-m-y">City: {{ (city$ | async)?.cityName }}</div>
+<div class="flex-center text-big md-m-y">
+   <div class="flex">Country: {{(city$ | async)?.countryName}}</div>
+   <div class="flex">Latitude: {{(city$ | async)?.latitude}}</div>
+   <div class="flex">Longtitude: {{(city$ | async)?.longitude}}</div>
+</div>
+<div class="flex-center text-big md-m-y">
+   <div class="flex">Yearly power usage: {{yearlyPowerUsage | number}} KWh</div>
+</div>
+<div class="w-full" style="display: block;">
+   <div><button mat-flat-button (click)="changeGrouping()">{{isGrouped ? "Show data per day" : "Show data per month"}}</button></div>
+   <canvas baseChart [datasets]="getPowerData()" [type]="'line'" [labels]="getLabels()" [legend]="true" [options]="getChartOptions()"></canvas>
+</div>
+<div class="w-full" style="display: block;">
+   <canvas baseChart [datasets]="getLengthData()" [type]="'line'" [labels]="getLabels()" [legend]="true" [options]="getLengthChartOptions()"></canvas>
+</div>
